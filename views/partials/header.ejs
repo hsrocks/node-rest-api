@@ -21,7 +21,7 @@
                     <% if(currentUser.gender==='male'){ %>
                       <a href="/user/<%= currentUser._id %>" class="item">Signed In As <i class="male icon"></i> <%= currentUser.name %></a>
                     <% } else { %>
-                      <a href="#" class="item">Signed In As <i class="female icon"></i> <%= currentUser.name %></a>
+                      <a href="/user/<%= currentUser._id %>" class="item">Signed In As <i class="female icon"></i> <%= currentUser.name %></a>
                       <% } %>
                     <a href="/logout" class="item">Logout</a>
                     <% } %>
