@@ -1,0 +1,30 @@
+Deployment Instructions for Heroku and configuring the Database on MLab using Windows OS:
+
+1. To configure Database on MLab
+
+a. Create Your account on MLAB
+b. On HomePage ; click on Create New
+c. I will be using the free subscripton ; so Click on Sandbox
+d. Select the region and continue
+e. Enter the name for the Database
+f. After that Click on Add User and add the username and password for the user
+g. Copy and paste the URL for the DB on clipboard
+
+2. To set Up Heroku
+
+a. Create account on Heroku
+b. Install Heroku Cli
+c. Copy the ssh key on heroku using :
+      heroku keys:add
+d. Verify the heroku key using :
+  heroku keys
+e. To test the connection type :
+  ssh -V git@heroku.com
+  from gitbash
+f. Create heroku repo using :
+  heroku create
+g. Set up your mongodb url for heroku app by setting MONGODB_URI environment variable. Please note that the variable name should be same :
+  heroku config:set MONGODB_URI=Mongodb_url_copied_on_clipboard
+h. Push your code to Heroku
+  git push heroku master
+i. We will get the app url . Copy and paste the URL on browser and Enjoy the Web Application
