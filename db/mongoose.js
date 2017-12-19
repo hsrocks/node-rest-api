@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 mongoose.Promise =global.Promise;
 
-mongoose.connect('mongodb://localhost/node_todo_clevero',{
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/node_todo_clevero',{
   useMongoClient :true
 });
 
