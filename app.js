@@ -49,7 +49,7 @@ app.use(function(req, res, next){
 app.use("/", indexRoutes);
 app.use("/todos", todosRoutes);
 
-var port = 3000 || process.env.PORT;
+var port = process.env.PORT || 3000;
 app.listen(port,()=>{
   console.log(`App started on port ${port}`);
 })
