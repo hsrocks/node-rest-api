@@ -1,0 +1,67 @@
+<% include ./partials/header %>
+    <div class ="ui header">Todos</div>
+        <form class ="ui form" action ="/todos" method="POST">
+            <div class="field">
+                <label>Title</label>
+                <input type="text" name="todo[title]" placeholder="Title">
+            </div>
+            <div class="field">
+                <label>Due Date</label>
+                    <input type="date" name="todo[dueDate]" placeholder="Date">
+            </div>
+            <div class="field">
+                <label>Todo Content</label>
+                <textarea name="todo[body]" placeholder="Description about Todo"></textarea>
+            </div>
+            <div class="grouped fields">
+              <label>labels</label>
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input type="radio" name="todo[label]" checked="checked" value="Personal">
+                <label>Personal</label>
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input type="radio" name="todo[label]" value="Work">
+                <label>Work</label>
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input type="radio" name="todo[label]" value="Shopping">
+                <label>Shopping</label>
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input type="radio" name="todo[label]" value="Others">
+                <label>Others</label>
+              </div>
+            </div>
+          </div>
+          <div class="grouped fields">
+            <label>Status</label>
+          <div class="field">
+            <div class="ui radio checkbox">
+              <input type="radio" name="todo[status]" checked="checked" value="New">
+              <label>New</label>
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui radio checkbox">
+              <input type="radio" name="todo[status]" value="In Progress">
+              <label>In progress</label>
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui radio checkbox">
+              <input type="radio" name="todo[status]" value="Completed">
+              <label>Completed</label>
+            </div>
+          </div>
+        </div>
+                <input class="ui basic big button purple" type="submit">
+        </form>
+</div>
+<% include ./partials/footer %>

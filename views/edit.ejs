@@ -1,0 +1,95 @@
+<% include ./partials/header %>
+    <div class="ui huge header">Edit <%= todo.title %></div>
+    <form class="ui form" action="/todos/<%= todo._id %>?_method=PUT" method="POST">
+        <div class="field">
+            <label>Title</label>
+            <input type="text" name="todo[title]" value="<%= todo.title %>">
+        </div>
+        <div class="field">
+              <label>Description</label>
+            <input type="text" name="todo[body]" value="<%= todo.body %>">
+        </div>
+        <div class="field">
+            <label>Todo Due Date</label>
+            <input type="date" name="todo[dueDate]" value="<%= newDate %>">
+        </div>
+        <div class="grouped fields">
+          <label>labels</label>
+        <div class="field">
+          <div class="ui radio checkbox">
+            <% if(todo.label==='Personal'){ %>
+            <input type="radio" name="todo[label]" checked="checked" value="Personal">
+          <% }else{ %>
+            <input type="radio" name="todo[label]" value="Personal">
+          <% } %>
+            <label>Personal</label>
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui radio checkbox">
+            <% if(todo.label==='Work'){ %>
+            <input type="radio" name="todo[label]" checked="checked" value="Work">
+          <% }else{ %>
+            <input type="radio" name="todo[label]" value="Work">
+          <% } %>
+            <label>Work</label>
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui radio checkbox">
+          <%  if(todo.label==='Shopping'){ %>
+            <input type="radio" name="todo[label]" checked="checked" value="Shopping">
+          <% }else{ %>
+            <input type="radio" name="todo[label]" value="Shopping">
+          <% } %>
+            <label>Shopping</label>
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui radio checkbox">
+            <% if(todo.label==='Others'){ %>
+            <input type="radio" name="todo[label]" checked="checked" value="Others">
+        <%  }else{ %>
+            <input type="radio" name="todo[label]" value="Others">
+          <% } %>
+            <label>Others</label>
+          </div>
+        </div>
+      </div>
+      <div class="grouped fields">
+        <label>Status</label>
+      <div class="field">
+        <div class="ui radio checkbox">
+          <% if(todo.status === 'New'){ %>
+          <input type="radio" name="todo[status]" checked="checked" value="New">
+          <% } else { %>
+            <input type="radio" name="todo[status]" value="New">
+            <% } %>
+          <label>New</label>
+        </div>
+      </div>
+      <div class="field">
+        <div class="ui radio checkbox">
+          <% if(todo.status === 'In Progress'){ %>
+          <input type="radio" name="todo[status]" checked="checked" value="In Progress">
+          <% } else { %>
+            <input type="radio" name="todo[status]"  value="In Progress">
+            <% } %>
+          <label>In progress</label>
+        </div>
+      </div>
+      <div class="field">
+        <div class="ui radio checkbox">
+            <% if(todo.status === 'Completed'){ %>
+          <input type="radio" name="todo[status]" checked="checked" value="Completed">
+          <% } else { %>
+            <input type="radio" name="todo[status]" value="Completed">
+            <% } %>
+          <label>Completed</label>
+        </div>
+      </div>
+    </div>
+    <input class="ui violet big basic button" type="submit">
+    </form>
+</div>
+<% include ./partials/footer %>

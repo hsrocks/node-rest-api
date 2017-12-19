@@ -1,0 +1,35 @@
+<% include ./partials/header %>
+
+    <div class="ui huge header">User Profile</div>
+    <div class="ui top  attached segment">
+        <div class="ui divided items">
+                <div class="item">
+                    <div class="content">
+                         <div class="description">
+                           <h2 class="ui header">
+                               Name -
+                               <div class="content">
+                                 <%= user.name %>
+                               </div>
+                              </h2>
+                              <h2 class="ui header">
+                              Age -
+                              <div class="content">
+                                <%= user.age %>
+                              </div>
+                             </h2>
+                             <h2 class="ui header">
+                                 Gender -
+                                 <div class="content">
+                                   <%= user.gender %>
+                                 </div>
+                                </h2>
+                         </div>
+                    </div>
+                </div>
+        </div>
+        <a class="ui orange basic button" href="/user/<%= user._id %>">Go Back</a>
+    </div>
+</div>
+
+<% include ./partials/footer %>

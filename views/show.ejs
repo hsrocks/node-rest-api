@@ -1,0 +1,64 @@
+<% include ./partials/header %>
+
+    <div class="ui huge header"><%= todo.title %></div>
+    <div class="ui top attached ">
+        <div class="item">
+            <div class="content">
+                <span><%= todo.dueDate.toDateString() %></span>
+              <div class="ui segments">
+                <% if(todo.status==='New'){ %>
+                <div class="ui yellow inverted segment">
+                <% }else if(todo.status==='In Progress'){ %>
+                  <div class="ui olive inverted segment">
+                  <% }else{ %>
+                    <div class="ui green inverted segment">
+                    <% } %>
+                <h2 class="ui sub header">
+                Status :  <%= todo.status %>
+              </h2>
+              </div>
+            </div>
+            <div class="ui segments">
+            <div class="ui segment">
+              <h2 class="ui sub header">
+              <% if(todo.label === 'Personal'){ %>
+              Labels :  <%= todo.label %>
+              <i class="user icon"></i>
+              <% } else if(todo.label === 'Work'){ %>
+                Labels :  <%= todo.label %>
+                <i class="suitcase icon"></i>
+              <% } else if(todo.label === 'Shopping'){ %>
+                Labels :  <%= todo.label %>
+                <i class="shop icon"></i>
+              <% } else { %>
+                Labels :  <%= todo.label %>
+              <i class="sticky note icon"></i>
+              <% } %>
+            </h2>
+            </div>
+          </div>
+            </div>
+            <div class="ui segments">
+            <div class="description">
+              <% if(todo.status==='New'){ %>
+              <div class="ui yellow inverted segment">
+              <% }else if(todo.status==='In Progress'){ %>
+                <div class="ui olive inverted segment">
+                <% }else{ %>
+                  <div class="ui green inverted segment">
+                  <% } %>
+                <p><%- todo.body %></p>
+              </div>
+            </div>
+          </div>
+             <% if(currentUser && todo.author.id.equals(currentUser._id)){ %>
+            <a class="ui orange basic button" href="/todos/<%= todo._id %>/edit">Edit</a>
+            <form id="delete" action="/todos/<%= todo._id %>?_method=DELETE" method="POST">
+                <button class="ui red basic button">Delete</button>
+            </form>
+            <% } %>
+        </div>
+    </div>
+
+</div>
+<% include ./partials/footer %>

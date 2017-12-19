@@ -1,0 +1,43 @@
+<!DOCTYPE  html>
+<html>
+    <head>
+        <title>The Todo App</title>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css" rel = "stylesheet" type="text/css"></link>
+        <link href="/stylesheets/app.css" rel = "stylesheet" type="text/css"></link>
+    </head>
+    <body>
+        <div class="ui fixed inverted menu">
+            <div class = "ui container">
+                <div class = "header item">
+                    <i class="code icon"></i>Todo Site
+                </div>
+                <a href="/" class="item">Home</a>
+                <a href="/todos/" class="item">New Todo</a>
+                <div class="right menu">
+                  <% if(!currentUser){ %>
+                    <a href="/register" class="item">Sign Up</a>
+                    <a href="/login" class="item">Login</a>
+                  <% } else { %>
+                    <% if(currentUser.gender==='male'){ %>
+                      <a href="/user/<%= currentUser._id %>" class="item">Signed In As <i class="male icon"></i> <%= currentUser.name %></a>
+                    <% } else { %>
+                      <a href="#" class="item">Signed In As <i class="female icon"></i> <%= currentUser.name %></a>
+                      <% } %>
+                    <a href="/logout" class="item">Logout</a>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+        <div class="ui main text container segment">
+        <% if(error.length>0 || success.length>0){ %>
+          <% if(success && success.length > 0) { %>
+        <div class="ui success message">
+          <div class="header"><%=success %></div>
+        </div>
+          <% } %>
+          <% if(error && error.length > 0) { %>
+        <div class="ui error message">
+          <div class="header"><%=error %></div>
+        </div>
+          <% } %>
+        <% } %>
