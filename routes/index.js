@@ -32,7 +32,7 @@ router.get("/register", function(req, res){
 
 //handle sign up logic
 router.post("/register", function(req, res){
-  console.log(req.body);
+
     var newUser = new User({username: req.body.username,name : req.body.name,age : req.body.age,gender: req.body.gender});
     User.register(newUser, req.body.password, function(err, user){
         if(err){
@@ -49,14 +49,14 @@ router.post("/register", function(req, res){
 
 //show login form
 router.get("/login", function(req, res){
-   res.render("login");
+   res.render("user/login");
 });
 
 //handling login logic
 router.post("/login", passport.authenticate("local",
     {
         successRedirect: "/",
-        failureRedirect: "/login",
+        failureRedirect: "user/login",
         failureFlash : true
     }), function(req, res){
 });
@@ -98,8 +98,8 @@ router.get("/user/:id/profile", middleware.isLoggedIn,function(req, res){
       if(err){
           console.log(err);
       } else {
-        res.render("profile",{user : foundUser})
       }
+      res.render("user/profile",{user : foundUser})
   });
 });
 

@@ -8,7 +8,7 @@ var User = require("../models/user");
 var {Todo} = require('../models/todos');
 // NEW ROUTE
 router.get("/", middleware.isLoggedIn,function(req, res){
-    res.render("new");
+    res.render("todos/new");
 });
 
 router.post('/',middleware.isLoggedIn,(req,res)=>{
@@ -18,8 +18,8 @@ router.post('/',middleware.isLoggedIn,(req,res)=>{
       req.flash("error", "Due Date should be greater than equal to Today's Date");
       return res.redirect("/todos/")
     }
-    var name = req.body.todo.title;
-   var body = req.body.todo.body;
+    var name = req.sanitize(req.body.todo.title);
+   var body = req.sanitize(req.body.todo.body);
    var dueDate = req.body.todo.dueDate;
    var label = req.body.todo.label;
    var status = req.body.todo.status;
@@ -31,7 +31,7 @@ router.post('/',middleware.isLoggedIn,(req,res)=>{
    var newTodo = {title: name, body: body, dueDate: dueDate, author:author,label : label , status : status}
     Todo.create(newTodo, function(err, newTodo){
         if(err){
-            res.render("new");
+            res.render("todos/new");
         } else {
             //then, redirect to the index
             res.redirect("/");
@@ -47,7 +47,7 @@ router.get("/:id", function(req, res){
             res.redirect("/");
         } else {
             //render show template with that todo
-            res.render("show", {todo: foundTodo});
+            res.render("todos/show", {todo: foundTodo});
         }
     });
 });
@@ -61,13 +61,16 @@ router.get("/:id/edit", middleware.checkUserTodo, function(req, res){
         } else {
             //render show template with that Todo
             var newDate = moment(foundTodo.dueDate).utc().format("YYYY-MM-DD");
-            res.render("edit", {todo: foundTodo,newDate:newDate});
+            res.render("todos/edit", {todo: foundTodo,newDate:newDate});
         }
     });
 });
 
 router.put("/:id", function(req, res){
-    var newData = {title: req.body.todo.title, body: req.body.todo.body, dueDate: req.body.todo.dueDate,label : req.body.todo.label , status : req.body.todo.status};
+  req.body.todo.body = req.sanitize(req.body.todo.body);
+  console.log(req.body.todo.body);
+  req.body.todo.title = req.sanitize(req.body.todo.title);
+      var newData = {title: req.body.todo.title, body: req.body.todo.body, dueDate: req.body.todo.dueDate,label : req.body.todo.label , status : req.body.todo.status};
     Todo.findByIdAndUpdate(req.params.id, {$set: newData}, function(err, todo){
         if(err){
             req.flash("error", err.message);

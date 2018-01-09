@@ -11,6 +11,7 @@ LocalStrategy = require("passport-local"),
 flash        = require("connect-flash"),
 session = require("express-session"),
 methodOverride = require("method-override"),
+expressSanitizer= require("express-sanitizer"),
 User = require("./models/user");
 var {Todo} = require('./models/todos');
 const bodyParser = require('body-parser');
@@ -24,7 +25,7 @@ app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride('_method'));
 app.use(cookieParser('secret'));
-
+app.use(expressSanitizer());
 // PASSPORT CONFIGURATION
 app.use(require("express-session")({
     secret: "Clevero Todo!",
