@@ -27,7 +27,7 @@ router.get('/author',(req,res)=>{
 })
 // show register form
 router.get("/register", function(req, res){
-   res.render("register");
+   res.render("user/register");
 });
 
 //handle sign up logic
